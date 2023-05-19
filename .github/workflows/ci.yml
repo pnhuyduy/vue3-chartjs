@@ -11,8 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:
@@ -24,8 +23,8 @@ jobs:
       - name: Set node
         uses: actions/setup-node@v3
         with:
-        node-version: 18.x
-        cache: pnpm
+          node-version: 18.x
+          cache: pnpm
 
       - name: Install
         run: pnpm i
