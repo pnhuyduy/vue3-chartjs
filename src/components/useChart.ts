@@ -17,14 +17,11 @@ interface LineData {
   }
 }
 
-// Day
-const startOfDay = moment().startOf('day')
-const startOfWeek = moment().startOf('week')
 
 
 const defaultxAxisOptions = {
   type: 'time',
-  min: startOfDay.toDate().getTime(),
+  min: moment().startOf('day').toDate().getTime(),
   time: {
     displayFormats: {
       hour: 'HH:mm'
@@ -34,14 +31,14 @@ const defaultxAxisOptions = {
 const xAxisOptions = ref(JSON.parse(JSON.stringify(defaultxAxisOptions)))
 
 const randomDataInDay = (day = moment().startOf('day')): LineData[] => {
-  const hours = randomInt(0, 24)
+  const hours = randomInt(8, 21)
 
   const data = Array.from({ length: hours }, (_, index) => {
     const randomSeconds = randomInt(0, 3600)
     let item: LineData = {
       id: nanoid(5),
       data: {
-        timestamp: day.add(index, 'hours').add(randomSeconds, 'seconds').toDate().getTime(),
+        timestamp: day.add(index, 'h').add(randomSeconds, 's').toDate().getTime(),
         value: randomFloat(70, 210)
       }
     }
@@ -57,16 +54,16 @@ const randomDataInDay = (day = moment().startOf('day')): LineData[] => {
 
 const randomDataInWeek = (): LineData[] => {
   let data = []
-  for (let index = 0; index < 6; index++) {
-    data.push(randomDataInDay(startOfWeek.add(index, 'days')))
+  for (let index = 0; index < 7; index++) {
+    data.push(randomDataInDay(moment().startOf('week').add(index, 'd')))
   }
 
   xAxisOptions.value = {
     type: 'time',
-    min: startOfWeek.toDate().getTime(),
+    min: moment().startOf('week').toDate().getTime(),
     time: {
       displayFormats: {
-        hour: 'HH:mm'
+        day: 'DD/MM'
       }
     }
   }
@@ -118,6 +115,17 @@ export const useChart = () => {
             },
           },
         },
+        zoom: {
+          zoom: {
+            wheel: {
+              enabled: true,
+            },
+            pinch: {
+              enabled: true
+            },
+            mode: 'y',
+          }
+        }
       },
       scales: {
         x: xAxisOptions.value,
@@ -162,8 +170,8 @@ export const useChart = () => {
     if (days === 1) {
       newDatasets = randomDataInDay()
     } else if (days === 7) {
-      newDatasets = randomDataInWeek()
-    }
+      newDatasets = randomDataInDay()
+    } else newDatasets = randomDataInDay()
 
     datasets.value = newDatasets
   }

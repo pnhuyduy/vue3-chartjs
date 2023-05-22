@@ -32,6 +32,7 @@ import {
 import { Line } from 'vue-chartjs'
 import { useChart } from './useChart'
 import annotationPlugin from 'chartjs-plugin-annotation'
+import zoomPlugin from 'chartjs-plugin-zoom'
 import 'chartjs-adapter-moment'
 import { ref } from 'vue'
 
@@ -44,6 +45,7 @@ ChartJS.register(
   Tooltip,
   Legend,
   TimeScale,
+  zoomPlugin,
   annotationPlugin
 )
 const activeBtn = ref(1)
