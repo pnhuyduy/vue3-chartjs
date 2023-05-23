@@ -55,6 +55,7 @@ const { lineChartRef, data, options } = useChart()
 
 .chart-wrapper {
   height: calc(100vh - 200px);
+  width: calc(100vw - 10px);
   min-width: 900px;
 }
 </style>
