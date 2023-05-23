@@ -1,7 +1,8 @@
-import { computed, ref } from "vue"
-import { Tick } from 'chart.js';
-import moment from 'moment';
-import { nanoid } from 'nanoid/non-secure';
+import { computed, ref } from 'vue'
+import { Tick } from 'chart.js'
+import moment from 'moment'
+import { nanoid } from 'nanoid/non-secure'
+import debounce from 'lodash.debounce'
 
 const redDotColor = 'rgba(224, 24, 57, 1)'
 const blueDotColor = 'rgba(0, 91, 187, 1)'
@@ -12,23 +13,25 @@ const randomInt = (min: number, max: number) => Math.floor(Math.random() * (max 
 interface LineData {
   id: string
   data: {
-    timestamp: number,
+    timestamp: number
     value: number
   }
 }
 
-
-
 const defaultxAxisOptions = {
   type: 'time',
   min: moment().startOf('day').toDate().getTime(),
+  beginAtZero: true,
   time: {
+    unit: 'hour',
     displayFormats: {
-      hour: 'HH:mm'
-    }
-  }
+      minute: 'HH:mm',
+      hour: 'HH:mm',
+      day: 'DD/MM',
+    },
+  },
 }
-const xAxisOptions = ref(JSON.parse(JSON.stringify(defaultxAxisOptions)))
+const xAxisOptions = ref(defaultxAxisOptions)
 
 const randomDataInDay = (day = moment().startOf('day')): LineData[] => {
   const hours = randomInt(8, 21)
@@ -39,46 +42,43 @@ const randomDataInDay = (day = moment().startOf('day')): LineData[] => {
       id: nanoid(5),
       data: {
         timestamp: day.add(index, 'h').add(randomSeconds, 's').toDate().getTime(),
-        value: randomFloat(70, 210)
-      }
+        value: randomFloat(70, 210),
+      },
     }
 
     return item
   })
 
-  xAxisOptions.value = JSON.parse(JSON.stringify(defaultxAxisOptions))
-
-
   return data
 }
 
-const randomDataInWeek = (): LineData[] => {
-  let data = []
-  for (let index = 0; index < 7; index++) {
-    data.push(randomDataInDay(moment().startOf('week').add(index, 'd')))
-  }
+// const randomDataInWeek = (): LineData[] => {
+//   let data = []
+//   for (let index = 0; index < 7; index++) {
+//     data.push(randomDataInDay(moment().startOf('week').add(index, 'd')))
+//   }
 
-  xAxisOptions.value = {
-    type: 'time',
-    min: moment().startOf('week').toDate().getTime(),
-    time: {
-      displayFormats: {
-        day: 'DD/MM'
-      }
-    }
-  }
+//   xAxisOptions.value = {
+//     type: 'time',
+//     min: moment().startOf('week').toDate().getTime(),
+//     time: {
+//       displayFormats: {
+//         day: 'DD/MM'
+//       }
+//     }
+//   }
 
-  return data.flat()
+//   return data.flat()
 
-}
+// }
 
 export const useChart = () => {
+  const lineChartRef = ref(null)
   const datasets = ref(randomDataInDay())
   const data = computed(() => {
     return {
       datasets: [
         {
-          label: 'Data One',
           backgroundColor: '#f87979',
           pointBackgroundColor: function (context: any) {
             const {
@@ -87,9 +87,9 @@ export const useChart = () => {
 
             return y >= 70 && y <= 180 ? blueDotColor : redDotColor
           },
-          data: datasets.value
-        }
-      ]
+          data: datasets.value,
+        },
+      ],
     }
   })
 
@@ -117,15 +117,21 @@ export const useChart = () => {
         },
         zoom: {
           zoom: {
+            pan: {
+              enabled: false,
+            },
             wheel: {
               enabled: true,
             },
             pinch: {
-              enabled: true
+              enabled: true,
             },
-            mode: 'y',
-          }
-        }
+            mode: 'x',
+            onZoomComplete: debounce(({ chart }) => {
+              const level = chart.getZoomLevel()
+            }, 100),
+          },
+        },
       },
       scales: {
         x: xAxisOptions.value,
@@ -142,7 +148,7 @@ export const useChart = () => {
             callback: function (val: number) {
               if ([60].includes(val)) return ''
               if (val === 70) return val
-              return val % 30 === 0 ? val : '';
+              return val % 30 === 0 ? val : ''
             },
             color: function (data: { tick: Tick }) {
               if ([70, 180].includes(data.tick.value)) return 'rgba(0, 69, 142, 1)'
@@ -150,28 +156,25 @@ export const useChart = () => {
             },
             font: {
               size: 12,
-              weight: 700
-            }
+              weight: 700,
+            },
           },
         },
-
       },
       parsing: {
         yAxisKey: 'data.value',
-        xAxisKey: 'data.timestamp'
-      }
+        xAxisKey: 'data.timestamp',
+      },
     }
   })
 
   const setData = (days = 1) => {
     let newDatasets: LineData[] = []
 
-
     if (days === 1) {
+      xAxisOptions.value = JSON.parse(JSON.stringify(defaultxAxisOptions))
       newDatasets = randomDataInDay()
-    } else if (days === 7) {
-      newDatasets = randomDataInDay()
-    } else newDatasets = randomDataInDay()
+    }
 
     datasets.value = newDatasets
   }
@@ -179,7 +182,8 @@ export const useChart = () => {
   return {
     datasets,
     data,
+    lineChartRef,
     options,
-    setData
+    setData,
   }
 }
