@@ -1,25 +1,14 @@
 <template>
   <div class="chart-container">
     <div class="chart-container-body">
-      <!-- <NSpace>
-      <NButtonGroup>
-        <NButton
-          v-for="(btn, index) in btns"
-          :key="index"
-          @click="onClickBtn(btn.value)"
-          :type="btn.value === activeBtn ? 'primary' : 'default'"
-        >
-          {{ btn.label }}
-        </NButton>
-      </NButtonGroup>
-    </NSpace> -->
-      <Line ref="lineChartRef" :data="(data as any)" :options="(options as any)" />
+      <div class="chart-wrapper">
+        <Line ref="lineChartRef" id="chart" :data="(data as any)" :options="(options as any)" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-// import { NSpace, NButtonGroup, NButton } from 'naive-ui'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -50,44 +39,22 @@ ChartJS.register(
   annotationPlugin
 )
 
-// const activeBtn = ref(1)
-
-// const btns = [
-//   {
-//     label: '오늘',
-//     value: 1,
-//   },
-//   {
-//     label: '주',
-//     value: 7,
-//   },
-//   {
-//     label: '월',
-//     value: 30,
-//   },
-//   {
-//     label: '년',
-//     value: 365,
-//   },
-// ]
-
-const { data, options } = useChart()
-
-// const onClickBtn = (value: number) => {
-//   setData(value)
-//   activeBtn.value = value
-// }
+const { lineChartRef, data, options } = useChart()
 </script>
 
 <style>
 .chart-container {
-  position: relative;
-  overflow: auto;
-  width: 100%;
+  overflow-x: auto;
 }
 
 .chart-container-body {
+  overflow-x: auto;
   position: relative;
-  height: 300px;
+  width: fit-content;
+}
+
+.chart-wrapper {
+  height: calc(100vh - 200px);
+  min-width: 900px;
 }
 </style>

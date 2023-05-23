@@ -1,8 +1,7 @@
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { Tick } from 'chart.js'
 import moment from 'moment'
 import { nanoid } from 'nanoid/non-secure'
-import debounce from 'lodash.debounce'
 
 const redDotColor = 'rgba(224, 24, 57, 1)'
 const blueDotColor = 'rgba(0, 91, 187, 1)'
@@ -74,13 +73,15 @@ const randomDataInDay = (day = moment().startOf('day')): LineData[] => {
 
 export const useChart = () => {
   const lineChartRef = ref(null)
-  const datasets = ref(randomDataInDay())
+  const datasets = ref<LineData[]>([])
   const data = computed(() => {
     return {
       datasets: [
         {
           backgroundColor: '#f87979',
           pointBackgroundColor: function (context: any) {
+            if (!context.parsed) return
+
             const {
               parsed: { y },
             } = context
@@ -113,23 +114,6 @@ export const useChart = () => {
               backgroundColor: 'rgba(241, 246, 251, 0.6)',
               borderColor: 'rgba(45, 93, 169, 0.25)',
             },
-          },
-        },
-        zoom: {
-          zoom: {
-            pan: {
-              enabled: false,
-            },
-            wheel: {
-              enabled: true,
-            },
-            pinch: {
-              enabled: true,
-            },
-            mode: 'x',
-            onZoomComplete: debounce(({ chart }) => {
-              const level = chart.getZoomLevel()
-            }, 100),
           },
         },
       },
@@ -178,6 +162,10 @@ export const useChart = () => {
 
     datasets.value = newDatasets
   }
+
+  onMounted(() => {
+    setData()
+  })
 
   return {
     datasets,
