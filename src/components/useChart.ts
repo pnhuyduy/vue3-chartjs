@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid/non-secure'
 const redDotColor = 'rgba(224, 24, 57, 1)'
 const blueDotColor = 'rgba(0, 91, 187, 1)'
 
-const randomFloat = (min: number, max: number) => Math.random() * (max - min) + min
+// const randomFloat = (min: number, max: number) => Math.random() * (max - min) + min
 const randomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min)
 
 interface LineData {
@@ -21,8 +21,12 @@ const defaultxAxisOptions = {
   type: 'time',
   min: moment().startOf('day').toDate().getTime(),
   beginAtZero: true,
+  ticks: {
+    autoSkip: true,
+    autoSkipPadding: 50,
+    maxRotation: 0
+  },
   time: {
-    unit: 'hour',
     displayFormats: {
       minute: 'HH:mm',
       hour: 'HH:mm',
@@ -41,7 +45,7 @@ const randomDataInDay = (day = moment().startOf('day')): LineData[] => {
       id: nanoid(5),
       data: {
         timestamp: day.add(index, 'h').add(randomSeconds, 's').toDate().getTime(),
-        value: randomFloat(70, 210),
+        value: randomInt(70, 210),
       },
     }
 
@@ -79,6 +83,8 @@ export const useChart = () => {
       datasets: [
         {
           backgroundColor: '#f87979',
+          pointRadius: 4,
+          pointHitRadius: 8,
           pointBackgroundColor: function (context: any) {
             if (!context.parsed) return
 
@@ -116,6 +122,27 @@ export const useChart = () => {
             },
           },
         },
+        zoom: {
+          limits: {
+            y: { min: 0, max: 300 },
+          },
+          pan: {
+            enabled: true,
+            mode: 'xy',
+          },
+          zoom: {
+            wheel: {
+              enabled: true,
+            },
+            pinch: {
+              enabled: true
+            },
+            mode: 'xy',
+            onZoomComplete({ chart }: any) {
+              chart.update('none');
+            }
+          }
+        }
       },
       scales: {
         x: xAxisOptions.value,

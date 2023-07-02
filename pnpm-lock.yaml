@@ -4,6 +4,9 @@ dependencies:
   chart.js:
     specifier: ^4.3.0
     version: 4.3.0
+  chartjs-adapter-dayjs-4:
+    specifier: ^1.0.4
+    version: 1.0.4(chart.js@4.3.0)(dayjs@1.11.8)
   chartjs-adapter-moment:
     specifier: ^1.0.1
     version: 1.0.1(chart.js@4.3.0)(moment@2.29.4)
@@ -13,6 +16,9 @@ dependencies:
   chartjs-plugin-zoom:
     specifier: ^2.0.1
     version: 2.0.1(chart.js@4.3.0)
+  lodash.debounce:
+    specifier: ^4.0.8
+    version: 4.0.8
   moment:
     specifier: ^2.29.4
     version: 2.29.4
@@ -468,6 +474,17 @@ packages:
       '@kurkle/color': 0.3.2
     dev: false
 
+  /chartjs-adapter-dayjs-4@1.0.4(chart.js@4.3.0)(dayjs@1.11.8):
+    resolution: {integrity: sha512-yy9BAYW4aNzPVrCWZetbILegTRb7HokhgospPoC3b5iZ5qdlqNmXts2KdSp6AqnjkPAp/YWyHDxLvIvwt5x81w==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      chart.js: '>=4.0.1'
+      dayjs: ^1.9.7
+    dependencies:
+      chart.js: 4.3.0
+      dayjs: 1.11.8
+    dev: false
+
   /chartjs-adapter-moment@1.0.1(chart.js@4.3.0)(moment@2.29.4):
     resolution: {integrity: sha512-Uz+nTX/GxocuqXpGylxK19YG4R3OSVf8326D+HwSTsNw1LgzyIGRo+Qujwro1wy6X+soNSnfj5t2vZ+r6EaDmA==}
     peerDependencies:
@@ -522,6 +539,10 @@ packages:
     engines: {node: '>=0.11'}
     dependencies:
       '@babel/runtime': 7.21.5
+    dev: false
+
+  /dayjs@1.11.8:
+    resolution: {integrity: sha512-LcgxzFoWMEPO7ggRv1Y2N31hUf2R0Vj7fuy/m+Bg1K8rr+KAs1AEy4y9jd5DXe8pbHgX+srkHNS7TH6Q6ZhYeQ==}
     dev: false
 
   /de-indent@1.0.2:
@@ -590,6 +611,10 @@ packages:
 
   /lodash-es@4.17.21:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
+
+  /lodash.debounce@4.0.8:
+    resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
     dev: false
 
   /lodash@4.17.21:
