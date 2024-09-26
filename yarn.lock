@@ -491,9 +491,7 @@ muggle-string@^0.2.2:
   integrity sha512-YVE1mIJ4VpUMqZObFndk9CJu6DBJR/GB13p3tXuNbwD4XExaI5EOuRl6BHeIDxIqXZVxSfAC+y6U1Z/IxCfKUg==
 
 naive-ui@^2.34.3:
-  version "2.34.4"
-  resolved "https://registry.yarnpkg.com/naive-ui/-/naive-ui-2.34.4.tgz#04cd71ef5c76c3f526af88a6c895a79467c89784"
-  integrity sha512-aPG8PDfhSzIzn/jSC9y3Jb3Pe2wHJ7F0cFV1EWlbImSrZECeUmoc+fIcOSWbizoztkKfaUAeKwYdMl09MKkj1g==
+  version "2.40.1"
   dependencies:
     "@css-render/plugin-bem" "^0.15.10"
     "@css-render/vue3-ssr" "^0.15.10"
