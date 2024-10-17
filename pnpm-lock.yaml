@@ -3,19 +3,19 @@ lockfileVersion: '6.0'
 dependencies:
   chart.js:
     specifier: ^4.3.0
-    version: 4.3.0
+    version: 4.4.5
   chartjs-adapter-dayjs-4:
     specifier: ^1.0.4
-    version: 1.0.4(chart.js@4.3.0)(dayjs@1.11.8)
+    version: 1.0.4(chart.js@4.4.5)(dayjs@1.11.13)
   chartjs-adapter-moment:
     specifier: ^1.0.1
-    version: 1.0.1(chart.js@4.3.0)(moment@2.29.4)
+    version: 1.0.1(chart.js@4.4.5)(moment@2.29.4)
   chartjs-plugin-annotation:
     specifier: ^3.0.1
-    version: 3.0.1(chart.js@4.3.0)
+    version: 3.0.1(chart.js@4.4.5)
   chartjs-plugin-zoom:
     specifier: ^2.0.1
-    version: 2.0.1(chart.js@4.3.0)
+    version: 2.0.1(chart.js@4.4.5)
   lodash.debounce:
     specifier: ^4.0.8
     version: 4.0.8
@@ -33,7 +33,7 @@ dependencies:
     version: 3.3.4
   vue-chartjs:
     specifier: ^5.2.0
-    version: 5.2.0(chart.js@4.3.0)(vue@3.3.4)
+    version: 5.2.0(chart.js@4.4.5)(vue@3.3.4)
 
 devDependencies:
   '@vitejs/plugin-vue':
@@ -467,48 +467,48 @@ packages:
       balanced-match: 1.0.2
     dev: true
 
-  /chart.js@4.3.0:
-    resolution: {integrity: sha512-ynG0E79xGfMaV2xAHdbhwiPLczxnNNnasrmPEXriXsPJGjmhOBYzFVEsB65w2qMDz+CaBJJuJD0inE/ab/h36g==}
-    engines: {pnpm: '>=7'}
+  /chart.js@4.4.5:
+    resolution: {integrity: sha512-CVVjg1RYTJV9OCC8WeJPMx8gsV8K6WIyIEQUE3ui4AR9Hfgls9URri6Ja3hyMVBbTF8Q2KFa19PE815gWcWhng==}
+    engines: {pnpm: '>=8'}
     dependencies:
       '@kurkle/color': 0.3.2
     dev: false
 
-  /chartjs-adapter-dayjs-4@1.0.4(chart.js@4.3.0)(dayjs@1.11.8):
+  /chartjs-adapter-dayjs-4@1.0.4(chart.js@4.4.5)(dayjs@1.11.13):
     resolution: {integrity: sha512-yy9BAYW4aNzPVrCWZetbILegTRb7HokhgospPoC3b5iZ5qdlqNmXts2KdSp6AqnjkPAp/YWyHDxLvIvwt5x81w==}
     engines: {node: '>=10'}
     peerDependencies:
       chart.js: '>=4.0.1'
       dayjs: ^1.9.7
     dependencies:
-      chart.js: 4.3.0
-      dayjs: 1.11.8
+      chart.js: 4.4.5
+      dayjs: 1.11.13
     dev: false
 
-  /chartjs-adapter-moment@1.0.1(chart.js@4.3.0)(moment@2.29.4):
+  /chartjs-adapter-moment@1.0.1(chart.js@4.4.5)(moment@2.29.4):
     resolution: {integrity: sha512-Uz+nTX/GxocuqXpGylxK19YG4R3OSVf8326D+HwSTsNw1LgzyIGRo+Qujwro1wy6X+soNSnfj5t2vZ+r6EaDmA==}
     peerDependencies:
       chart.js: '>=3.0.0'
       moment: ^2.10.2
     dependencies:
-      chart.js: 4.3.0
+      chart.js: 4.4.5
       moment: 2.29.4
     dev: false
 
-  /chartjs-plugin-annotation@3.0.1(chart.js@4.3.0):
+  /chartjs-plugin-annotation@3.0.1(chart.js@4.4.5):
     resolution: {integrity: sha512-hlIrXXKqSDgb+ZjVYHefmlZUXK8KbkCPiynSVrTb/HjTMkT62cOInaT1NTQCKtxKKOm9oHp958DY3RTAFKtkHg==}
     peerDependencies:
       chart.js: '>=4.0.0'
     dependencies:
-      chart.js: 4.3.0
+      chart.js: 4.4.5
     dev: false
 
-  /chartjs-plugin-zoom@2.0.1(chart.js@4.3.0):
+  /chartjs-plugin-zoom@2.0.1(chart.js@4.4.5):
     resolution: {integrity: sha512-ogOmLu6e+Q7E1XWOCOz9YwybMslz9qNfGV2a+qjfmqJYpsw5ZMoRHZBUyW+NGhkpQ5PwwPA/+rikHpBZb7PZuA==}
     peerDependencies:
       chart.js: '>=3.2.0'
     dependencies:
-      chart.js: 4.3.0
+      chart.js: 4.4.5
       hammerjs: 2.0.8
     dev: false
 
@@ -541,8 +541,8 @@ packages:
       '@babel/runtime': 7.21.5
     dev: false
 
-  /dayjs@1.11.8:
-    resolution: {integrity: sha512-LcgxzFoWMEPO7ggRv1Y2N31hUf2R0Vj7fuy/m+Bg1K8rr+KAs1AEy4y9jd5DXe8pbHgX+srkHNS7TH6Q6ZhYeQ==}
+  /dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
     dev: false
 
   /de-indent@1.0.2:
@@ -586,8 +586,8 @@ packages:
     resolution: {integrity: sha512-qaeGN5bx63s/AXgQo8gj6fBkxge+OoLddLniox5qtLAEY5HSnuSlISXVPxnSae1dWblvTh4/HoMIB+mbMsvZzw==}
     dev: false
 
-  /fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+  /fsevents@2.3.3:
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -706,7 +706,7 @@ packages:
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /seemly@0.3.6:
@@ -777,7 +777,7 @@ packages:
       postcss: 8.4.23
       rollup: 3.22.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /vooks@0.2.12(vue@3.3.4):
@@ -789,13 +789,13 @@ packages:
       vue: 3.3.4
     dev: false
 
-  /vue-chartjs@5.2.0(chart.js@4.3.0)(vue@3.3.4):
+  /vue-chartjs@5.2.0(chart.js@4.4.5)(vue@3.3.4):
     resolution: {integrity: sha512-d3zpKmGZr2OWHQ1xmxBcAn5ShTG917+/UCLaSpaCDDqT0U7DBsvFzTs69ZnHCgKoXT55GZDW8YEj9Av+dlONLA==}
     peerDependencies:
       chart.js: ^4.1.1
       vue: ^3.0.0-0 || ^2.7.0
     dependencies:
-      chart.js: 4.3.0
+      chart.js: 4.4.5
       vue: 3.3.4
     dev: false
 
